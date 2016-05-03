@@ -101,6 +101,39 @@ ALTER SEQUENCE patients_id_seq OWNED BY patients.id;
 
 
 --
+-- Name: specialties; Type: TABLE; Schema: public; Owner: Guest; Tablespace: 
+--
+
+CREATE TABLE specialties (
+    id integer NOT NULL,
+    specialty character varying
+);
+
+
+ALTER TABLE specialties OWNER TO "Guest";
+
+--
+-- Name: specialties_id_seq; Type: SEQUENCE; Schema: public; Owner: Guest
+--
+
+CREATE SEQUENCE specialties_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE specialties_id_seq OWNER TO "Guest";
+
+--
+-- Name: specialties_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Guest
+--
+
+ALTER SEQUENCE specialties_id_seq OWNED BY specialties.id;
+
+
+--
 -- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
 --
 
@@ -115,6 +148,13 @@ ALTER TABLE ONLY patients ALTER COLUMN id SET DEFAULT nextval('patients_id_seq':
 
 
 --
+-- Name: id; Type: DEFAULT; Schema: public; Owner: Guest
+--
+
+ALTER TABLE ONLY specialties ALTER COLUMN id SET DEFAULT nextval('specialties_id_seq'::regclass);
+
+
+--
 -- Data for Name: doctors; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
@@ -122,6 +162,8 @@ COPY doctors (id, first_name, last_name, specialty) FROM stdin;
 1	Alex	Smith	Pediatrics
 2	Lucas	Jones	Dermatology
 3	Lisa	Arthur	Optometry
+4	Mark	Scott	Neurology
+5	Thomas 	Aaron	Dermatology
 \.
 
 
@@ -129,7 +171,7 @@ COPY doctors (id, first_name, last_name, specialty) FROM stdin;
 -- Name: doctors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('doctors_id_seq', 3, true);
+SELECT pg_catalog.setval('doctors_id_seq', 5, true);
 
 
 --
@@ -141,6 +183,7 @@ COPY patients (id, first_name, last_name, birthdate, doctorid) FROM stdin;
 4	Margret	Ann	1974-08-12	3
 2	Randel	Cobb	1995-03-21	2
 3	Mourice	Jean-Lucas	1987-07-05	1
+5	Darren	Marks	1979-09-09	5
 \.
 
 
@@ -148,7 +191,29 @@ COPY patients (id, first_name, last_name, birthdate, doctorid) FROM stdin;
 -- Name: patients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('patients_id_seq', 4, true);
+SELECT pg_catalog.setval('patients_id_seq', 5, true);
+
+
+--
+-- Data for Name: specialties; Type: TABLE DATA; Schema: public; Owner: Guest
+--
+
+COPY specialties (id, specialty) FROM stdin;
+1	Optometry
+2	Orthopedics
+3	Pediatrics
+4	Dermatology
+5	Podiatry
+6	Neurology
+7	Anesthesiology
+\.
+
+
+--
+-- Name: specialties_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
+--
+
+SELECT pg_catalog.setval('specialties_id_seq', 7, true);
 
 
 --
@@ -165,6 +230,14 @@ ALTER TABLE ONLY doctors
 
 ALTER TABLE ONLY patients
     ADD CONSTRAINT patients_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: specialties_pkey; Type: CONSTRAINT; Schema: public; Owner: Guest; Tablespace: 
+--
+
+ALTER TABLE ONLY specialties
+    ADD CONSTRAINT specialties_pkey PRIMARY KEY (id);
 
 
 --

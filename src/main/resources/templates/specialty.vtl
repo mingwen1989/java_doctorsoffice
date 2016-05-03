@@ -1,0 +1,8 @@
+<h1>$specialty</h1>
+<h3>List of doctors with this specialty</h3>
+<ul>
+  #foreach($doctor in $doctors)
+    <li>$doctor.getLastName(), $doctor.getFirstName()</li>
+    <hr>
+  #end
+</ul>

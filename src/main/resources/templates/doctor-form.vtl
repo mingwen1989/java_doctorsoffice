@@ -11,12 +11,9 @@
   <div class="form-group">
     <label for="specialty">Specialty:</label>
     <select id="specialty" name="specialty" class="form-control">
-      <option value="Optometry">Optometry</input>
-      <option value="Orthopedics">Orthopedics</input>
-      <option value="Pediatrics">Pediatrics</input>
-      <option value="Dermatology">Dermatology</input>
-      <option value="Podiatry">Podiatry</input>
-      <option value="Neurology">Neurology</input>
+      #foreach($specialty in $specialties)
+      <option value="$specialty">$specialty</input>
+      #end
     </select>
   </div>
   <button class="btn btn-lg btn-success" type="submit">Submit</button>

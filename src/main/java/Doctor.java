@@ -35,12 +35,28 @@ public class Doctor {
       return con.createQuery(sql).executeAndFetch(Doctor.class);
     }
   }
+  public static List<String> allSpecialties() {
+    String sql = "SELECT specialty FROM specialties ORDER BY specialty ASC";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql).executeAndFetch(String.class);
+    }
+  }
   public Integer countPatients() {
     String sql = "SELECT COUNT(doctorid) FROM patients WHERE doctorid =:id";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql)
       .addParameter("id", this.id)
       .executeAndFetchFirst(Integer.class);
+    }
+  }
+
+  public static List<Doctor> listDoctorsBySpec(String spec) {
+    String special = spec;
+    String sql = "SELECT * FROM doctors WHERE specialty=:special ORDER BY last_name ASC";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+      .addParameter("special", special)
+      .executeAndFetch(Doctor.class);
     }
   }
 

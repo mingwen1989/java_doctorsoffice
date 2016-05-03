@@ -19,6 +19,7 @@ public class App {
 
     get("/doctors/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+      model.put("specialties", Doctor.allSpecialties());
       model.put("template", "templates/doctor-form.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -80,5 +81,22 @@ public class App {
       model.put("template", "templates/doctor.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    get("/specialties", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("specialties", Doctor.allSpecialties());
+      model.put("template", "templates/specialties.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/specialties/:specialty", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String specialty = request.params(":specialty");
+      model.put("specialty", specialty);
+      model.put("doctors", Doctor.listDoctorsBySpec(specialty));
+      model.put("template", "templates/specialty.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
   }
 }

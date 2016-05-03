@@ -16,7 +16,7 @@
     <label for="doctor">Doctor:</label>
     <select id="doctor" name="doctor" class="form-control">
       #foreach($doctor in $doctors)
-        <option value="$doctor.getId()">$doctor.getLastName(), $doctor.getFirstName() ($doctor.getSpecialty())</input>
+        <option value="$doctor.getId()">$doctor.getLastName(), $doctor.getFirstName() ($doctor.getSpecialty())</option>
       #end
     </select>
   </div>

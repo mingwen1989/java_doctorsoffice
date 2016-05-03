@@ -1,5 +1,9 @@
 import java.util.List;
 import org.sql2o.*;
+import java.text.ParseException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Patient {
   private int id;
@@ -33,6 +37,18 @@ public class Patient {
   }
   public String getBirthdate() {
     return birthdate;
+  }
+
+  public String formatBirthday(){
+    SimpleDateFormat fromUser = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat myFormat = new SimpleDateFormat("MMM dd yyyy");
+    try {
+      String reformattedStr = myFormat.format(fromUser.parse(birthdate));
+      return reformattedStr;
+    } catch (ParseException e) {
+      return "broken";
+    }
+
   }
 
   public static List<Patient> all() {

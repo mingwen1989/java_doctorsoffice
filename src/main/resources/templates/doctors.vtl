@@ -2,8 +2,13 @@
 
 <ul>
   #foreach($doctor in $doctors)
-   <li><a href="/doctors/$doctor.getId()">$doctor.getLastName(), $doctor.getFirstName()</a> Specialty: $doctor.getSpecialty() Number of Patients: $doctor.countPatients()</li>
+   <li><a href="/doctors/$doctor.getId()">$doctor.getLastName(), $doctor.getFirstName()</a>
+    <ul><li><span style="font-weight: bold;">Specialty:</span> $doctor.getSpecialty()</li>
+        <li><span style="font-weight: bold;">Number of Patients:</span> $doctor.countPatients()</li>
+    </ul></li>
+    <hr>
   #end
 </ul>
 
 <a href="/doctors/new">Add a New Doctor</a>
+<a href="/">Home Page</a>

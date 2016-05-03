@@ -35,12 +35,12 @@ public class Doctor {
       return con.createQuery(sql).executeAndFetch(Doctor.class);
     }
   }
-  public List<T> countPatients() {
+  public Integer countPatients() {
     String sql = "SELECT COUNT(doctorid) FROM patients WHERE doctorid =:id";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql)
       .addParameter("id", this.id)
-      .executeAndFetch(T);
+      .executeAndFetchFirst(Integer.class);
     }
   }
 

@@ -1,0 +1,8 @@
+<h1>$doctor.getFirstName() $doctor.getLastName()</h1>
+<h3>$doctor.getSpecialty()</h3>
+<h3>Patients</h3>
+<ol>
+#foreach($patient in $doctor.getPatients())
+  <li>$patient.getLastName(), $patient.getFirstName()</li>
+#end
+</ol>

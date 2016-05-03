@@ -1,0 +1,23 @@
+<h1>New Doctor Form</h1>
+<form action="/doctors" method="post">
+  <div class="form-group">
+    <label for="firstName">First Name:</label>
+    <input id="firstName" name="firstName" type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <input id="lastName" name="lastName" type="text" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="specialty">Specialty:</label>
+    <select id="specialty" name="specialty" class="form-control">
+      <option value="Optometry">Optometry</input>
+      <option value="Orthopedics">Orthopedics</input>
+      <option value="Pediatrics">Pediatrics</input>
+      <option value="Dermatology">Dermatology</input>
+      <option value="Podiatry">Podiatry</input>
+      <option value="Neurology">Neurology</input>
+    </select>
+  </div>
+  <button class="btn btn-lg btn-success" type="submit">Submit</button>
+</form>
